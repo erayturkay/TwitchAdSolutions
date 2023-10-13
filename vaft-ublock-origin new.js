@@ -74,7 +74,7 @@ twitch-videoad.js text/javascript
             twitchMainWorker = this;
             this.onmessage = function(e) {
                 // NOTE: Removed adDiv caching as '.video-player' can change between streams?
-                if (e.data.key == 'UboShowAdBanner') {
+                if (e.data.key == '') {
                     var adDiv = getAdDiv();
                     if (adDiv != null) {
                         adDiv.P.textContent = 'Blocking' + (e.data.isMidroll ? ' midroll' : '') + ' ads';
@@ -134,7 +134,7 @@ twitch-videoad.js text/javascript
         var streamInfo = StreamInfosByUrl[url];
         if (streamInfo == null) {
             console.log('Unknown stream url ' + url);
-            postMessage({key:'UboHideAdBanner'});
+            //postMessage({key:'UboHideAdBanner'});
             return textStr;
         }
         if (!OPT_MODE_STRIP_AD_SEGMENTS) {
