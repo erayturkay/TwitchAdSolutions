@@ -101,14 +101,7 @@ twitch-videoad.js text/javascript
                 var playerRootDiv = document.querySelector('.video-player');
                 var adDiv = null;
                 if (playerRootDiv != null) {
-                    adDiv = playerRootDiv.querySelector('.ubo-overlay');
-                    if (adDiv == null) {
-                        adDiv = document.createElement('div');
-                        adDiv.className = '';
-                        adDiv.innerHTML = '<div class="" style="color: white; background-color: rgba(0, 0, 0, 0.8); position: absolute; top: 0px; left: 0px; padding: 5px;"><p></p></div>';
-                        adDiv.style.display = 'none';
-                        adDiv.P = adDiv.querySelector('p');
-                        playerRootDiv.appendChild(adDiv);
+                    
                     }
                 }
                 return adDiv;
