@@ -74,7 +74,18 @@ twitch-videoad.js text/javascript
             twitchMainWorker = this;
             this.onmessage = function(e) {
                 // NOTE: Removed adDiv caching as '.video-player' can change between streams?
-                
+                if (e.data.key == 'UboShowAdBanner') {
+                    var adDiv = getAdDiv();
+                    if (adDiv != null) {
+                        adDiv.P.textContent = 'Blocking' + (e.data.isMidroll ? ' midroll' : '') + ' ads';
+                        if (OPT_SHOW_AD_BANNER) {
+                            adDiv.style.display = 'block';
+                        }
+                    }
+                } else if (e.data.key == 'UboHideAdBanner') {
+                    var adDiv = getAdDiv();
+                    if (adDiv != null) {
+                        adDiv.style.display = 'none';
                     }
                 } else if (e.data.key == 'UboChannelNameM3U8Changed') {
                     //console.log('M3U8 channel name changed to ' + e.data.value);
