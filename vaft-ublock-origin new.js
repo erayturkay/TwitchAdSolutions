@@ -101,7 +101,14 @@ twitch-videoad.js text/javascript
                 var playerRootDiv = document.querySelector('.video-player');
                 var adDiv = null;
                 if (playerRootDiv != null) {
-                    
+                    adDiv = playerRootDiv.querySelector('.ubo-overlay');
+                    if (adDiv == null) {
+                        adDiv = document.createElement('div');
+                        adDiv.className = 'ubo-overlay';
+                        adDiv.innerHTML = '<div class="player-ad-notice" style="color: white; background-color: rgba(0, 0, 0, 0.8); position: absolute; top: 0px; left: 0px; padding: 5px;"><p></p></div>';
+                        adDiv.style.display = 'none';
+                        adDiv.P = adDiv.querySelector('p');
+                        playerRootDiv.appendChild(adDiv);
                     }
                 }
                 return adDiv;
@@ -127,7 +134,7 @@ twitch-videoad.js text/javascript
         var streamInfo = StreamInfosByUrl[url];
         if (streamInfo == null) {
             console.log('Unknown stream url ' + url);
-            //postMessage({key:'UboHideAdBanner'});
+            postMessage({key:'UboHideAdBanner'});
             return textStr;
         }
         if (!OPT_MODE_STRIP_AD_SEGMENTS) {
